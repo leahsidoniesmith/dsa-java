@@ -37,7 +37,7 @@ public class LongIntegerQuiz extends LongInteger {
     }
 
     /**
-     * Finds the difference between the longer and smaller integer.
+     * Finds the difference between the longer and shorter integer.
      * @param longer the longer integer.
      * @param shorter the shorter integer.
      * @param result the difference.
