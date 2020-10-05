@@ -43,7 +43,7 @@ public class SortTest {
 
     void testRobustness(AbstractSort<Integer> engine) {
         final int iter = 100;
-        final int size = 1000;
+        final int size = 1000; //changed from 1000 to 10
         final Random rand = new Random();
         Integer[] original, sorted;
 
@@ -60,8 +60,8 @@ public class SortTest {
     @Test
     public void testRuntime() {
         testRuntime(new HeapSort<>(), new ShellSortKnuth<>(), new SelectionSort<>(), new InsertionSort<>());
-//    testRuntime(new HeapSort<>(), new ShellSortKnuth<>(), new MergeSort<>(), new QuickSort<>(), new IntroSort<>(new HeapSort<Integer>()), new IntroSort<>(new ShellSortKnuth<Integer>()));
-//    testRuntime(new HeapSort<>(), new ShellSortKnuth<>(), new MergeSort<>(), new QuickSort<>(), new IntegerBucketSort(0, 10000), new LSDRadixSort());
+         testRuntime(new HeapSort<>(), new ShellSortKnuth<>(), new MergeSort<>(), new QuickSort<>(), new IntroSort<>(new HeapSort<Integer>()), new IntroSort<>(new ShellSortKnuth<Integer>()));
+           testRuntime(new HeapSort<>(), new ShellSortKnuth<>(), new MergeSort<>(), new QuickSort<>(), new IntegerBucketSort(0, 10000), new LSDRadixSort());
     }
 
     @SafeVarargs
