@@ -2,6 +2,7 @@ package edu.emory.cs.sort;
 
 import edu.emory.cs.sort.hybrid.HybridSort;
 import edu.emory.cs.sort.hybrid.HybridSortBaseline;
+import edu.emory.cs.sort.hybrid.HybridSortHW;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -20,15 +21,17 @@ public class HybridSortTest {
     @Test
     public void testRobustness() {
         HybridSort<Integer> gold = new HybridSortBaseline<>();
-        HybridSort<Integer> mine = new HybridSortBaseline<>();  // TODO: replace with your class
+        HybridSort<Integer> mine = new HybridSortHW<>();
 
         Integer[][] input = {{0, 1, 2, 3}, {7, 6, 5, 4}, {0, 3, 1, 2}, {4, 7, 6, 5}, {9, 8, 11, 10}};
         testRobustness(input, gold, mine);
+
 
         for (int row = 10; row <= 20; row++)
             for (int col = 10; col <= 20; col++)
                 for (int i = 0; i < 100; i++)
                     testRobustness(randomInput(row, col, 0.25), gold, mine);
+
     }
 
     void testRobustness(Integer[][] input, HybridSort<Integer> choi, HybridSort<Integer> mine) {
@@ -37,11 +40,12 @@ public class HybridSortTest {
         assertArrayEquals(gold, auto);
     }
 
+
     @Test
     @SuppressWarnings("unchecked")
     public void testSpeed() {
         HybridSort<Integer> gold = new HybridSortBaseline<>();
-        HybridSort<Integer> mine = new HybridSortBaseline<>();  // TODO: replace with your class
+        HybridSort<Integer> mine = new HybridSortHW<>(); 
         double ratio = 0.25;
         int row = 100, col;
 
@@ -54,12 +58,14 @@ public class HybridSortTest {
         }
     }
 
+
     /**
      * @param row   the row size of the input.
      * @param col   the column size of the input.
      * @param ratio the ratio of the input to be shuffled (for the 3rd and 4th cases).
      */
     @SuppressWarnings("unchecked")
+
     long[] testSpeed(int row, int col, double ratio, HybridSort<Integer>... engine) {
         long[] time = new long[engine.length];
         final int warm = 10, iter = 1000;
@@ -87,6 +93,9 @@ public class HybridSortTest {
 
         return time;
     }
+
+
+
 
     private Integer[][] copyOf(Integer[][] input) {
         Integer[][] copy = new Integer[input.length][];
