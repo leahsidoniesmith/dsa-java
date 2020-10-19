@@ -29,6 +29,7 @@ public class BalancedBinarySearchTreeQuiz<T extends Comparable<T>> extends Abstr
         // check conditions
         if(!node.hasParent()) return; //needs to have a parent
         if(!node.getParent().hasParent()) return; //needs to have a grandparent
+        if(node.getUncle() == null) return; //needs to have an uncle
         BinaryNode<T> parent = node.getParent();
         BinaryNode<T> grandparent = node.getGrandParent();
         BinaryNode<T> uncle = node.getUncle();
