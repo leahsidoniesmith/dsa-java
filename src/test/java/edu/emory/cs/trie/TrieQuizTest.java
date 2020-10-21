@@ -33,7 +33,6 @@ public class TrieQuizTest {
         for (int i = 0; i < L.size(); i++)
             trie.put(L.get(i), i);
         String input = "flCanadafl South Korea abcUnited States. Canada. fJapanese.";
-        //String input = "I was born in South Korea and raised in the United States. Japanese flCanadafl";
         List<Entity> entities = List.of(
                 new Entity(26, 39, 0),
                 new Entity(11, 22, 1),
