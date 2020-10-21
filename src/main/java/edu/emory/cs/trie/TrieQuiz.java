@@ -30,24 +30,18 @@ public class TrieQuiz extends Trie<Integer> {
      */
     List<Entity> getEntities(String input) {
         List<Entity> list = new ArrayList<>();
-        List<Integer> wordStart = new ArrayList<>();
-        wordStart.add(0); //assume input string starts with a word
-        for(int i = 0; i < input.length(); i++){
-            if(Character.isWhitespace(input.charAt(i))){
-                wordStart.add(i+1); //words start 1 character after a space
-            }
-        }
 
-        for(int i = 0; i < wordStart.size(); i++){ //check every word in the string
+        for(int i = 0; i < input.length(); i++){ //check every word in the string
             TrieNode node = this.getRoot(); //start at the root of the trie for each word
-            int index = wordStart.get(i); //starting index in the input string for this particular word
+            int index = i; //starting index in the input string for this particular word
             while ( !node.isEndState() && node.getChild(input.charAt(index)) != null){ //while we are not at a word and the child exists
                 node = node.getChild(input.charAt(index)); //get the child
                 index++; //increment to next character in input string
+
             }
 
             if(node.getValue() != null){ //if there are no more children or the end state is T, check if we are at a word
-                list.add(new Entity(wordStart.get(i), index, (int) node.getValue()));
+                list.add(new Entity(i, index, (int) node.getValue()));
             }
         }
 
