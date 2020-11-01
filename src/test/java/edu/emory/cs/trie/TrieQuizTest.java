@@ -32,13 +32,14 @@ public class TrieQuizTest {
         TrieQuiz trie = new TrieQuiz();
         for (int i = 0; i < L.size(); i++)
             trie.put(L.get(i), i);
-        String input = "flCanadafl South Korea abcUnited States. Canada. fJapanese.";
+        String input = "flCanadafl South Korea abcUnited States. Canada. fJapanSouth Korea.";
         List<Entity> entities = List.of(
                 new Entity(26, 39, 0),
                 new Entity(11, 22, 1),
                 new Entity(50, 55, 2),
                 new Entity(2, 8, 3),
-                new Entity(41, 47, 3));
+                new Entity(41, 47, 3),
+                new Entity(55, 66, 1));
         Set<String> expected = entities.stream().map(Entity::toString).collect(Collectors.toSet());
         Set<String> actual = trie.getEntities(input).stream().map(Entity::toString).collect(Collectors.toSet());
         assertEquals(expected, actual);
