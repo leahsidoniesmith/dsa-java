@@ -1,5 +1,4 @@
 package edu.emory.cs.trie.autocomplete;
-import edu.emory.cs.trie.Entity;
 import edu.emory.cs.trie.TrieNode;
 
 import java.util.*;
@@ -69,7 +68,7 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
     private String getWord(TrieNode<List<String>> node) {
         String result = "";
         while (node.getParent() != null) {
-            result = String.valueOf(node.getKey()) + result;
+            result = node.getKey() + result;
             node = node.getParent();
         }
         return result;
