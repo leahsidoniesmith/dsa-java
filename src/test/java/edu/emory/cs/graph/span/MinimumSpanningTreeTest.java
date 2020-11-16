@@ -10,7 +10,7 @@ import org.junit.Test;
 public class MinimumSpanningTreeTest {
     @Test
     public void testUndirected() {
-       /*
+
         Graph graph = new Graph(5);
         graph.setUndirectedEdge(0, 1, 5 - 2);
         graph.setUndirectedEdge(0, 2, 5 - 1);
@@ -34,7 +34,7 @@ public class MinimumSpanningTreeTest {
         System.out.println(tree);
         System.out.println(tree.getTotalWeight());
 
-        */
+
 
         //part 2 of the quiz
         System.out.println("part 2 of the quiz");
