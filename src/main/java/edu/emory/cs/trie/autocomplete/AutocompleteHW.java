@@ -105,6 +105,6 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
 
         candidates.remove(candidate);
         candidates.add(0, candidate);
-
+        if(candidates.size() > getMax()) candidates.remove(candidates.size() - 1); //one line change: ensure candidate list is correct size
     }
 }
