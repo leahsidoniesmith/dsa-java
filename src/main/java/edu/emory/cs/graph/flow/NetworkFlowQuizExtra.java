@@ -19,7 +19,6 @@ public class NetworkFlowQuizExtra {
      * @return a set of all augmenting paths between the specific source and target vertices in the graph.
      */
     public Set<Subgraph> getAugmentingPaths(Graph graph, int source, int target) {
-        List<Integer> isVisited = new ArrayList<>();
         Queue<Subgraph> queue = new LinkedList<>();
         Set<Subgraph> allPaths = new HashSet<>();
 
@@ -30,12 +29,14 @@ public class NetworkFlowQuizExtra {
         }
 
         while(! queue.isEmpty()){
-            Subgraph path = queue.remove(); //remove head
+            Subgraph path = queue.remove();
 
-            Edge min = findMinEdge2(path, target, graph);
+            Edge min = findMinEdge(path, target, graph);
 
+            // path found
             if (min.getSource() == source) {
                 allPaths.add(path);
+                // continue bfs if path not found
             } else {
                 for (Edge edge: graph.getIncomingEdges(min.getSource())) {
                     if(path.contains(edge.getSource())) continue;
@@ -49,18 +50,9 @@ public class NetworkFlowQuizExtra {
         return allPaths;
     }
 
-    //need to find a better way to find the last edge...the last edge is not always the min edge
-    public Edge findMinEdge(Subgraph path){
-        Edge min = new Edge(Integer.MAX_VALUE, Integer.MAX_VALUE);
-        for(Edge edge: path.getEdges()){
-            if(edge.getSource() < min.getSource()){
-                min = edge;
-            }
-        }
-        return min;
-    }
 
-    public Edge findMinEdge2(Subgraph path, int target, Graph graph){
+    // helper method to find the most recent edge in the path
+    public Edge findMinEdge(Subgraph path, int target, Graph graph){
         List<Edge> min = new ArrayList<>();
         min = path.getEdges();
         Edge end = min.get(min.size() - 1);
